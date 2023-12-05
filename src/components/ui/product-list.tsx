@@ -29,17 +29,15 @@ const ProductList = ({ products, heading, productType }: IProductListProps) => {
       <div className="flex items-center justify-between pb-5">
         <p className={cn(" font-bold uppercase lg:text-xl")}>{heading}</p>
 
-        {products.length > 6 && (
-          <div>
-            <Button variant="ghost" className={`${productType}-prev`}>
-              <ChevronLeftIcon size={16} />
-            </Button>
+        <div className="flex items-center gap-1">
+          <Button variant="ghost" className={`${productType}-prev`}>
+            <ChevronLeftIcon size={16} />
+          </Button>
 
-            <Button variant="ghost" className={`${productType}-next`}>
-              <ChevronRightIcon size={16} />
-            </Button>
-          </div>
-        )}
+          <Button variant="ghost" className={`${productType}-next`}>
+            <ChevronRightIcon size={16} />
+          </Button>
+        </div>
       </div>
 
       <Swiper

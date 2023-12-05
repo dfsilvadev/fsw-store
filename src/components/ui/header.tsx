@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { signIn, signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import {
@@ -12,8 +13,11 @@ import {
   ShoppingCartIcon,
 } from "lucide-react";
 
+import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { Button } from "./button";
 import { Card } from "./card";
+import Cart from "./cart";
+import { Separator } from "./separator";
 import {
   Sheet,
   SheetClose,
@@ -21,9 +25,7 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "./sheet";
-import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
-import { Separator } from "./separator";
-import Link from "next/link";
+
 const Header = () => {
   const { status, data } = useSession();
 
@@ -129,13 +131,23 @@ const Header = () => {
         </SheetContent>
       </Sheet>
 
-      <h1 className="text-lg font-semibold">
-        FSW <span className="text-primary">Store</span>
-      </h1>
+      <Link href="/">
+        <h1 className="text-lg font-semibold">
+          FSW <span className="text-primary">Store</span>
+        </h1>
+      </Link>
 
-      <Button size="icon" variant="outline">
-        <ShoppingCartIcon />
-      </Button>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button size="icon" variant="outline">
+            <ShoppingCartIcon />
+          </Button>
+        </SheetTrigger>
+
+        <SheetContent className="w-full lg:w-[600px] lg:max-w-[600px]">
+          <Cart />
+        </SheetContent>
+      </Sheet>
     </Card>
   );
 };
